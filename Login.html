@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+</head>
+<style>
+.container {
+    max-width: 300px;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+</style>
+<body>
+    <div class="container">
+    <div style="width: 100%;">
+        <p class="text-dark">Username</p>
+        <input type="text" name="username" id="username" class="form-control" required>
+        <span id="usernameError" style="font-size: small; color: red;"></span>
+    </div>
+
+    <div style="width: 100%;">
+        <p class="text-dark">Password</p>
+        <input type="password" name="password" id="password" class="form-control" required>
+        <span id="passwordError" style="font-size: small; color: red;"></span>
+    </div>
+   <br/>
+    <button type="button" onclick="validate()">SUBMIT</button>
+
+    <div>
+        <p><a href="/register.html">Don't have an account? Register here</a></p>
+    </div>
+</div>
+<p></p>
+    <script>
+        function validate() {
+            var usernameInput = document.getElementById("username");
+            var passwordInput = document.getElementById("password");
+            var usernameError = document.getElementById("usernameError");
+            var passwordError = document.getElementById("passwordError");
+            var isValid = true;
+
+            if (usernameInput.value.trim() === "") {
+                usernameError.innerHTML = "Please enter a username";
+                isValid = false;
+                document.getElementById('username').style.border = '1px solid red';
+            } else {
+                usernameError.innerHTML = "";
+                document.getElementById('username').style.border = '1px solid green';
+            }
+
+            if (passwordInput.value.trim() === "") {
+                passwordError.innerHTML = "Please enter a password";
+                isValid = false;
+                document.getElementById('password').style.border = '1px solid red';
+            } else {
+                passwordError.innerHTML = "";
+                document.getElementById('password').style.border = '1px solid green';
+            }
+
+          
+            if (isValid) {
+                console.log("Form submitted successfully");
+                
+            }
+        }
+    </script>        
+</body>
+</html>

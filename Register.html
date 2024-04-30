@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+</head>
+<style>
+    .container {
+        max-width: 350px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+    
+    button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    button:hover {
+        background-color: #0056b3;
+    }
+    </style>
+<body>
+    <div class="container">
+    <div style="width: 100%;">
+        <p class="text-dark">Firstname</p>
+        <input class="form-control" type="text" name="firstname" id="firstname" required>
+        <span id="checkname" style="font-size: small;"></span>
+    </div>
+
+    <div style="width: 100%;">
+        <p class="text-dark">Mobile Number</p>
+        <input type="text" name="number" id="number" class="text-dark" required>
+        <span id="checkno" style="font-size: small; color: red;"></span>
+    </div>
+
+    <div style="width: 100%;">
+        <p class="text-dark">Email</p>
+        <input type="email" name="email" id="email" class="text-dark" required>
+        <span id="checkmail" style="font-size: small; color: red;"></span>
+    </div>
+
+    <div style="width: 100%;">
+        <p class="text-dark">Password</p>
+        <input type="password" name="password" id="password" class="text-dark" required>
+    </div>
+
+    <div style="width: 100%;">
+        <p class="text-dark">Confirm Password</p>
+        <input type="password" name="confirmPassword" id="confirmPassword" class="text-dark" required>
+        <span id="confirmPasswordError" style="font-size: small; color: red; display: none;">Passwords do not match.</span>
+    </div>
+    
+    <button type="button" onclick="validate()">SUBMIT</button>
+    <div>
+        <p><a href="/Login.html">Already Have AN Account?</a></p>
+    </div>
+</div>
+    <script>
+        function validate() {
+            var firstname = document.getElementById("firstname");
+            var email = document.getElementById("email");
+            var number = document.getElementById("number");
+            var password = document.getElementById("password");
+            var confirmPassword = document.getElementById("confirmPassword");
+
+     
+            if (firstname.value.trim() === "") {
+                document.getElementById('checkname').innerHTML = 'Please enter your name';
+                document.getElementById('checkname').style.color = 'red';
+                document.getElementById('firstname').style.border = '1px solid red';
+            } else {
+                document.getElementById('checkname').innerHTML = 'Name is valid';
+                document.getElementById('checkname').style.color = 'green';
+            }
+
+           
+            if (!validateEmail(email.value.trim())) {
+                document.getElementById('checkmail').innerHTML = 'Please enter a valid email';
+                document.getElementById('checkmail').style.color = 'red';
+                document.getElementById('email').style.border = '1px solid red';
+            } else {
+                document.getElementById('checkmail').innerHTML = 'Email is valid';
+                document.getElementById('checkmail').style.color = 'green';
+            }
+
+            
+            if (!validateMobile(number.value.trim())) {
+                document.getElementById('checkno').innerHTML = 'Please enter a valid mobile number';
+                document.getElementById('checkno').style.color = 'red';
+                document.getElementById('number').style.border = '1px solid red';
+            } else {
+                document.getElementById('checkno').innerHTML = 'Mobile number is valid';
+                document.getElementById('checkno').style.color = 'green';
+            }
+
+            
+            if (password.value.trim() !== confirmPassword.value.trim()) {
+                document.getElementById('confirmPasswordError').style.display = 'block';
+                document.getElementById('password').style.border = '1px solid red';
+                document.getElementById('confirmPassword').style.border = '1px solid red';
+            } else {
+                document.getElementById('confirmPasswordError').style.display = 'none';
+            }
+        }
+
+        function validateEmail(email) {
+            var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return re.test(email);
+        }
+
+        function validateMobile(mobile) {
+            var re = /^\d{10}$/; 
+            return re.test(mobile);
+        }
+    </script>        
+</body>
+</html>
